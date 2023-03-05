@@ -1,4 +1,6 @@
 import './ItemListContainer.scss'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 const MOCK_DATA = [
     {
@@ -9,7 +11,7 @@ const MOCK_DATA = [
         img: "https://"
     },
     {
-        id:1,
+        id:2,
         name: "producto 1",
         description: "jdjdjfj",
         price: 1220,
@@ -18,26 +20,35 @@ const MOCK_DATA = [
 
 ]
 
+const pedirDatos = () => {
+   return new Promise ((resolve, reject) => {
+    //cuerpo de la promesa
+    setTimeout (() => {
+        resolve(MOCK_DATA)
+        // reject("Promesa rechazada")
+    },2000)
+})
+
+}
+
 export const ItemListContainer = () => {
 
-    const promesa = new Promise ((resolve, reject) => {
-        //cuerpo de la promesa
-        setTimeout (() => {
-            resolve(MOCK_DATA)
-            // reject("Promesa rechazada")
-        },2000)
-    })
 
-    promesa
-    .then ((response) => {
-        console.log(response)
-    })
-    .catch((error) => {
-        console.log(error)
-    })
-    .finally(()=> {
-        console.log("fin del proceso")
-    })
+    const [productos, setProductos] = useState([])
+    console.log(productos)
+    
+    useEffect(() => {
+        pedirDatos()
+        .then ((response) => {
+            setProductos(response)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+        .finally(()=> {
+            console.log("fin del proceso")
+        })
+    }, [])
 
     
 
@@ -45,7 +56,7 @@ export const ItemListContainer = () => {
         <div className= "Contenedor">
             <h2>Item List container</h2>
             <hr />
-            
+            { productos.map((el) => <h4>{el.name}</h4>)}
         </div>
     )
 }
