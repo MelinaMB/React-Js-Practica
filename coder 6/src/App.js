@@ -22,8 +22,6 @@ function App() {
         show ? <Contador /> : null
       }
       
-
-      
     </div>
   );
 }
