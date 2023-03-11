@@ -1,7 +1,7 @@
 import './ItemListContainer.scss'
 import { useEffect } from 'react'
 import { useState } from 'react'
-
+ 
 
 const MOCK_DATA = [
     {

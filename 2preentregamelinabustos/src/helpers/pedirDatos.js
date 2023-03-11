@@ -10,3 +10,15 @@ export const pedirDatos = () => {
     })
 
 }
+
+export const pedirProductoPorId = (id) => {
+    return new Promise((resolve, reject) => {
+        //cuerpo de la promesa
+        setTimeout(() => {
+            resolve(MOCK_DATA.find(prod => prod.id === id))
+            // reject("Promesa rechazada")
+        }, 2000)
+    })
+
+}
+
